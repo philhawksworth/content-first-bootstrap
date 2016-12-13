@@ -4,9 +4,12 @@ const runSequence = require('run-sequence');
 const contentful = require('contentful');
 const clean = require('gulp-clean');
 const pug = require('pug');
+const sass = require('gulp-sass');
 const mkdirp = require('mkdirp');
 const md = require('marked');
 const extend = require('extend')
+const webserver = require('gulp-webserver');
+
 
 // set up the contentful query client
 // readonly access from these creds
@@ -28,8 +31,6 @@ gulp.task('clean', function () {
 });
 
 
-
-
 // Get the pages data from the cloud CMS and stash them locally
 gulp.task('get:pages', () =>
   client.getEntries({'content_type':'page', 'select':'fields'})
@@ -48,10 +49,9 @@ gulp.task('get:pages', () =>
     })
 );
 
+
+// Generate the pages of the site from the gathered content data
 gulp.task('generate', function(){
-
-  console.log("Generate HTML");
-
   for(var page in site.pages) {
     console.log("Generate ", page);
     var path = "dist" + page.split(".")[0];
@@ -59,17 +59,49 @@ gulp.task('generate', function(){
     var html = pug.renderFile('src/templates/base.pug',  extend({"md":md}, site.pages[page]));
     fs.writeFileSync(path +'/index.html', html);
   }
-
 });
 
+
+// Compile CSS from Sass
+gulp.task('sass', () =>
+  gulp.src(['src/sass/base.scss'])
+    .pipe(sass({outputStyle: 'compressed', includePaths: ['./src/sass/include']}).on('error', sass.logError))
+    .pipe(gulp.dest('dist/style'))
+);
+
+
+// serve the static dist folder
+gulp.task('serve', function() {
+  gulp.src('dist')
+    .pipe(webserver({
+      livereload: false,
+      open: false
+    }));
+});
+
+
+// Watchers
+gulp.task('sass:watch', () =>
+  gulp.watch('src/sass/**/*.scss', ['sass'])
+);
+gulp.task('templates:watch', () =>
+  gulp.watch('src/templates/**/*.html', ['generate'])
+);
+
+
+
+// run the build in sequence
 gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'get:pages',
-    'generate',
+    ['generate', 'sass'],
     cb
   );
 });
 
+
+// default helpers
 gulp.task('default', ['build']);
+gulp.task('watch', ['sass:watch', 'templates:watch']);
 

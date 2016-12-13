@@ -1,0 +1,44 @@
+@import 'variables';
+@import 'mixins';
+@import 'type';
+
+
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  background: $page-color;
+  text-align: center;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.container {
+
+    margin:0 auto;
+    padding: 1em;
+    text-align: left;
+
+    @include bp(narrow) {
+        width: 80%;
+    }
+    @include bp(mid) {
+        width: 60%;
+    }
+    @include bp(wide) {
+        width: 900px;
+    }
+}
+
+
+div.page-purpose {
+    border: solid 1px $link-color-bright;
+    background-color: #f4f8ff;
+    color: $text-color-light;
+    padding: 1em;
+    border-radius: 2px;
+}
