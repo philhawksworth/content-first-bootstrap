@@ -1,5 +1,12 @@
+const fs = require('fs');
 const gulp = require('gulp');
+const runSequence = require('run-sequence');
 const contentful = require('contentful');
+const clean = require('gulp-clean');
+const pug = require('pug');
+const mkdirp = require('mkdirp');
+const md = require('marked');
+const extend = require('extend')
 
 // set up the contentful query client
 // readonly access from these creds
@@ -14,25 +21,54 @@ var site = {
 };
 
 
+// Clean up output directory
+gulp.task('clean', function () {
+  return gulp.src('dist/*', {read: false})
+    .pipe(clean());
+});
+
+
+
+
 // Get the pages data from the cloud CMS and stash them locally
-gulp.task('get:pages', function() {
-  console.log("Getting pages from CMS...");
-  client.getEntries({'content_type':'page', 'select':'fields'}).then(
+gulp.task('get:pages', () =>
+  client.getEntries({'content_type':'page', 'select':'fields'})
+    .then(
     function(resp) {
-      for(item in resp.items) {
+      for(var item in resp.items) {
         var fields = resp.items[item].fields;
         site.pages[fields.url] = {
           title: fields.title,
           pagePurpose: fields.pagePurpose,
-          PageContent: fields.PageContent
+          pageContent: fields.pageContent
         }
         console.log("gathered data for ", fields.url);
       }
-    }
-  ).then( function(){
-    console.log("...done getting pages. ");
-  })
+      fs.writeFileSync('dist/site.json', JSON.stringify(site));
+    })
+);
+
+gulp.task('generate', function(){
+
+  console.log("Generate HTML");
+
+  for(var page in site.pages) {
+    console.log("Generate ", page);
+    var path = "dist" + page.split(".")[0];
+    mkdirp.sync(path);
+    var html = pug.renderFile('src/templates/base.pug',  extend({"md":md}, site.pages[page]));
+    fs.writeFileSync(path +'/index.html', html);
+  }
+
 });
 
 
-gulp.task('default', ['get:pages']);
+gulp.task('default', function (cb) {
+  runSequence(
+    'clean',
+    'get:pages',
+    'generate',
+    cb
+  );
+});
+

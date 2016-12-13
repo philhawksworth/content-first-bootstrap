@@ -11,6 +11,15 @@
   "license": "ISC",
   "devDependencies": {
     "contentful": "^3.8.0",
-    "gulp": "^3.9.1"
+    "extend": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "marked": "^0.3.6",
+    "mkdirp": "^0.5.1",
+    "pug": "^2.0.0-beta6",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "jstransformer-markdown-it": "^2.0.0"
   }
 }

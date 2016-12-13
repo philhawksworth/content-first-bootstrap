@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    link(rel='stylesheet', href='/styles/styles.css')
+    title= locals.title
+
+
+  body
+    h1= locals.title
+    div.page-purpose!= md(locals.pagePurpose)
+    div.page-content!=md(locals.pageContent)
