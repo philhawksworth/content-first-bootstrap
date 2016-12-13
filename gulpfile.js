@@ -40,6 +40,7 @@ gulp.task('get:pages', () =>
         var fields = resp.items[item].fields;
         site.pages[fields.url] = {
           title: fields.title,
+          url: fields.url,
           pagePurpose: fields.pagePurpose,
           pageContent: fields.pageContent
         }
@@ -56,7 +57,7 @@ gulp.task('generate', function(){
     console.log("Generate ", page);
     var path = "dist" + page.split(".")[0];
     mkdirp.sync(path);
-    var html = pug.renderFile('src/templates/base.pug',  extend({"md":md}, site.pages[page]));
+    var html = pug.renderFile('src/templates/base.pug',  extend({"md":md}, site.pages[page], {"site": site}));
     fs.writeFileSync(path +'/index.html', html);
   }
 });
@@ -85,7 +86,7 @@ gulp.task('sass:watch', () =>
   gulp.watch('src/sass/**/*.scss', ['sass'])
 );
 gulp.task('templates:watch', () =>
-  gulp.watch('src/templates/**/*.html', ['generate'])
+  gulp.watch('src/templates/**/*.pug', ['generate'])
 );
 
 

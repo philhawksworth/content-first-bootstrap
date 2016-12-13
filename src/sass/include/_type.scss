@@ -16,7 +16,7 @@ body {
 
 h1, h2, h3, h4 {
     font-weight: normal;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 h1 {
@@ -35,6 +35,10 @@ h1 {
         padding-bottom: 0.4em;
         margin-bottom: 0.6em;
     }
+}
+
+h2.tag-line {
+    display:inline-block;
 }
 
 

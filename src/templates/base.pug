@@ -6,11 +6,16 @@ html
     link(rel='stylesheet', href='/style/base.css')
     title= locals.title
 
-
   body
+    header
+      ul.navigation
+        each item in locals.site.pages
+          li.main-nav__item
+            a.main-nav__link(href=item.url)= item.title
+
     div.container
       div.page-purpose
+        h2.tag-line Page Purpose –
         h1= locals.title
-        small Page Purpose:
         div!= md(locals.pagePurpose)
       div.page-content!=md(locals.pageContent)

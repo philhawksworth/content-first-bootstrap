@@ -24,21 +24,36 @@ p {
     text-align: left;
 
     @include bp(narrow) {
-        width: 80%;
+        width: 90%;
     }
     @include bp(mid) {
-        width: 60%;
+        width: 500px;
     }
     @include bp(wide) {
-        width: 900px;
+        width: 700px;
     }
 }
 
 
 div.page-purpose {
-    border: solid 1px $link-color-bright;
+    border: dashed 1px $link-color;
     background-color: #f4f8ff;
     color: $text-color-light;
     padding: 1em;
-    border-radius: 2px;
+    padding-bottom: 0;
+    margin-bottom: 1.5em;
+    border-radius: 3px;
+}
+
+.main-nav__item {
+    display: inline;
+    margin: 0 0.5em;
+}
+
+ul {
+    list-style: inside;
+
+    li {
+        line-height: 1;
+    }
 }
