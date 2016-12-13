@@ -62,8 +62,7 @@ gulp.task('generate', function(){
 
 });
 
-
-gulp.task('default', function (cb) {
+gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'get:pages',
@@ -71,4 +70,6 @@ gulp.task('default', function (cb) {
     cb
   );
 });
+
+gulp.task('default', ['build']);
 
