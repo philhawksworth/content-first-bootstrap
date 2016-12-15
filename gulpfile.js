@@ -21,6 +21,7 @@ var client = contentful.createClient({
 // The content data for the site.
 var site = {
   pages : {}
+  // TODO: add rootURL as environment variable
 };
 
 
