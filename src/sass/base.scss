@@ -86,6 +86,14 @@ section {
     border: solid 1px #eee;
     margin: 0.5em -1em;
     padding: 0.5em 1em;
+
+    &:hover {
+        border: solid 1px #999;
+        
+        p.meta {
+            color: #666;
+        }
+    }
 }
 
 section.quiet {
@@ -95,3 +103,11 @@ section.quiet {
         display:none;
     }
 }
+
+
+/* project specific styling */
+
+// section.begin__intro {
+//     background: #000;
+//     color: #fff;
+// }
