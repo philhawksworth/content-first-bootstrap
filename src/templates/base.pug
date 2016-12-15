@@ -9,6 +9,7 @@ html
   body
     div.container
       div.page-purpose
+        code= locals.url
         h1= locals.title
         h2.tag-line Page Purpose –
         div!= md(locals.pagePurpose)

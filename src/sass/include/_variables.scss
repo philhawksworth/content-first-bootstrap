@@ -1,6 +1,6 @@
 $page-color: #fff;
 $text-color:#222;
-$link-color: #4455ff;
+$link-color: #3344ee;
 
 $text-color-light: lighten($text-color, 30%);
 
@@ -8,4 +8,4 @@ $link-color-faint: lighten($link-color, 50%);
 $link-color-bright: lighten($link-color, 20%);
 $link-color-dark: darken($link-color, 10%);
 
-$base-font-size: 16px;
+$base-font-size: 12px;

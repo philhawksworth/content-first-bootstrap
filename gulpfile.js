@@ -57,7 +57,7 @@ gulp.task('generate', function(){
     console.log("Generate ", page);
     var path = "dist" + page.split(".")[0];
     mkdirp.sync(path);
-    var html = pug.renderFile('src/templates/base.pug',  extend({"md":md}, site.pages[page], {"site": site}));
+    var html = pug.renderFile('src/templates/base.pug',  extend({"md":md, "pretty": true}, site.pages[page], {"site": site}));
     fs.writeFileSync(path +'/index.html', html);
   }
 });

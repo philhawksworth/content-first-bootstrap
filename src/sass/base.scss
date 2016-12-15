@@ -42,6 +42,7 @@ div.page-purpose {
     padding-bottom: 0;
     margin-bottom: 1.5em;
     border-radius: 3px;
+    font-size: 0.8em;
 }
 
 
@@ -67,4 +68,12 @@ ul.navigation {
     margin-bottom: 2em;
     padding-bottom: 1em;
     font-size: 0.9em;
+}
+
+code {
+    display: block;
+    background-color: #fbfbfb;
+    border: solid #eee 1px;
+    padding: 4px 2px;
+    margin-bottom: 1em;
 }
