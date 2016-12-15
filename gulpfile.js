@@ -51,10 +51,9 @@ gulp.task('get:pages', () =>
           title: fields.title,
           url: fields.url,
           pagePurpose: fields.pagePurpose,
-          pageContent: fields.pageContent,
           contentSections: pageSections
         }
-        
+
         console.log("gathered data for ", fields.url);
       }
       fs.writeFileSync('dist/site.json', JSON.stringify(site));

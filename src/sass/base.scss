@@ -43,7 +43,7 @@ div.page-purpose {
     border: solid 1px #ddd;
     background-color: #f6f6f6;
     padding: 1em;
-    padding-bottom: 0;
+    padding-bottom: 1em;
     margin-bottom: 1.5em;
     border-radius: 3px;
     font-size: 0.8em;
@@ -80,4 +80,18 @@ code {
     border: solid #eee 1px;
     padding: 4px 2px;
     margin-bottom: 1em;
+}
+
+section {
+    border: solid 1px #eee;
+    margin: 0.5em -1em;
+    padding: 0.5em 1em;
+}
+
+section.quiet {
+    border: none;
+
+    p.meta {
+        display:none;
+    }
 }

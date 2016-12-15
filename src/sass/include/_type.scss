@@ -21,6 +21,16 @@ h1, h2, h3, h4 {
     margin-top: 1.5em;
 }
 
+section {
+
+    h1:nth-child(1),
+    h2:nth-child(1),
+    h3:nth-child(1) {
+        margin-top: 0em;
+    }
+
+}
+
 h1 {
     display: block;
     font-size: 1.4em;
@@ -59,11 +69,6 @@ a {
 }
 
 
-a.page-purpose__toggle {
-    margin-bottom: 0.8em;
-    display: inline-block;
-}
-
 .page-purpose {
   font-size: 0.8em;
   color: #777;
@@ -76,6 +81,9 @@ a.page-purpose__toggle {
       margin-top: 0.2em;
       margin-bottom: 0.8em
   }
+  a {
+      margin: 0 1em;
+  }
 }
 
 code {
@@ -83,4 +91,10 @@ code {
     background-color: #fff;
     border: #eee;
     padding: 4px; 
+}
+
+p.meta {
+    font-size: 0.7em;
+    color: #999;
+    font-family: Courier New, Courier, monospace;
 }

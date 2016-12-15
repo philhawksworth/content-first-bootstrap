@@ -14,6 +14,7 @@ html
         h2.tag-line Page Purpose –
         div!= md(locals.pagePurpose)
       a.page-purpose__toggle(href='#') Toggle info panel
+      a.page-sections__toggle(href='#') Toggle page section labels
     
     div.container
       header
@@ -21,11 +22,10 @@ html
           each item in locals.site.pages
             li.main-nav__item
               a.main-nav__link(href=item.url)= item.title
-      div.page-content!=md(locals.pageContent)
-
+              
       each item in locals.contentSections
         section
-          h1= item.name
+          p.meta Section: #{item.name}
           div!= md(item.content)
 
 
