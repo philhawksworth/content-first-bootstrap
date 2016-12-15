@@ -23,4 +23,10 @@ html
               a.main-nav__link(href=item.url)= item.title
       div.page-content!=md(locals.pageContent)
 
+      each item in locals.contentSections
+        section
+          h1= item.name
+          div!= md(item.content)
+
+
     script(type='text/javascript', src='/scripts/scaffold-controls.js')

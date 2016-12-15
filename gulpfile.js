@@ -39,12 +39,22 @@ gulp.task('get:pages', () =>
     function(resp) {
       for(var item in resp.items) {
         var fields = resp.items[item].fields;
+        
+        // gather the page sections
+        var pageSections = [];
+        for(var section in fields.contentSections) {
+          pageSections.push(fields.contentSections[section].fields);
+        }
+
+        // populate the page object
         site.pages[fields.url] = {
           title: fields.title,
           url: fields.url,
           pagePurpose: fields.pagePurpose,
-          pageContent: fields.pageContent
+          pageContent: fields.pageContent,
+          contentSections: pageSections
         }
+        
         console.log("gathered data for ", fields.url);
       }
       fs.writeFileSync('dist/site.json', JSON.stringify(site));
