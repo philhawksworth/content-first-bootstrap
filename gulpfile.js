@@ -71,6 +71,13 @@ gulp.task('sass', () =>
     .pipe(gulp.dest('dist/style'))
 );
 
+// compile scripts as required
+gulp.task('scripts', () =>
+  gulp.src(['src/scripts/**.js'])
+    .pipe(gulp.dest('dist/scripts'))
+);
+
+
 
 // serve the static dist folder
 gulp.task('serve', function() {
@@ -97,7 +104,7 @@ gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'get:pages',
-    ['generate', 'sass'],
+    ['generate', 'sass', 'scripts'],
     cb
   );
 });

@@ -7,15 +7,20 @@ html
     title= locals.title
 
   body
-    div.container
-      div.page-purpose
+    div.page-purpose
+      div.container
         code= locals.url
         h1= locals.title
         h2.tag-line Page Purpose –
         div!= md(locals.pagePurpose)
+      a.page-purpose__toggle(href='#') Toggle info panel
+    
+    div.container
       header
         ul.navigation
           each item in locals.site.pages
             li.main-nav__item
               a.main-nav__link(href=item.url)= item.title
       div.page-content!=md(locals.pageContent)
+
+    script(type='text/javascript', src='/scripts/scaffold-controls.js')
