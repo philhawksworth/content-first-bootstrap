@@ -54,7 +54,6 @@ gulp.task('get:pages', () =>
           contentSections: pageSections
         }
 
-        console.log("gathered data for ", fields.url);
       }
       fs.writeFileSync('dist/site.json', JSON.stringify(site));
     })
@@ -64,7 +63,6 @@ gulp.task('get:pages', () =>
 // Generate the pages of the site from the gathered content data
 gulp.task('generate', function(){
   for(var page in site.pages) {
-    console.log("Generate ", page);
     var path = "dist" + page.split(".")[0];
     mkdirp.sync(path);
     var html = pug.renderFile('src/templates/base.pug',  extend({"md":md, "pretty": true}, site.pages[page], {"site": site}));
@@ -80,12 +78,12 @@ gulp.task('sass', () =>
     .pipe(gulp.dest('dist/style'))
 );
 
+
 // compile scripts as required
 gulp.task('scripts', () =>
   gulp.src(['src/scripts/**.js'])
     .pipe(gulp.dest('dist/scripts'))
 );
-
 
 
 // serve the static dist folder
@@ -105,7 +103,6 @@ gulp.task('sass:watch', () =>
 gulp.task('templates:watch', () =>
   gulp.watch('src/templates/**/*.pug', ['generate'])
 );
-
 
 
 // run the build in sequence
