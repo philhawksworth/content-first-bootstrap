@@ -105,12 +105,20 @@ gulp.task('templates:watch', () =>
 );
 
 
+// Ensure any config files make to the dist folder
+gulp.task('configs', () =>
+  gulp.src(['_redirects'])
+    .pipe(gulp.dest('dist'))
+);
+
+
 // run the build in sequence
 gulp.task('build', function (cb) {
   runSequence(
     'clean',
     'get:pages',
     ['generate', 'sass', 'scripts'],
+    'configs',
     cb
   );
 });
