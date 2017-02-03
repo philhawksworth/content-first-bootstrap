@@ -19,6 +19,7 @@
     "marked": "^0.3.6",
     "mkdirp": "^0.5.1",
     "pug": "^2.0.0-beta6",
+    "gulp-pug-inheritance": "^0.2.1",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
