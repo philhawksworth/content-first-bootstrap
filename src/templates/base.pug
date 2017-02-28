@@ -23,7 +23,7 @@ html
               a.main-nav__link(href=item.url)= item.title
 
       each item in locals.contentSections
-        - var sectionClass = locals.url.split("/")[1] + "__" + item.name.replace(/ /gi,"-") + " quiet";
+        - var sectionClass = locals.url.split("/")[1] + "__" + item.name.replace(/ /gi,"-");
         section(class=sectionClass)
           p.meta Section: #{item.name}
           div!= md(item.content)

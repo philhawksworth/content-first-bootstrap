@@ -7,7 +7,7 @@ document.addEventListener('click', function(event){
         event.preventDefault();
         event.target.blur();
 
-        // toggle the infoe drawer
+        // toggle the info drawer
         var content = document.querySelector('.page-purpose .container');
         content.classList.toggle('hide');
 
@@ -17,5 +17,5 @@ document.addEventListener('click', function(event){
             sections[section].classList.toggle('quiet');
         }
     }
-    
+
 }, false);
